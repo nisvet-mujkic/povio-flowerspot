@@ -3,9 +3,51 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1AF126CC-5561-4D8E-BDFC-087CADCD16A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B5212348-491C-4C56-82AC-AA06CF47C4D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{DCC1946B-F7E1-4130-A7A9-BB198F6C63FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2817DBF2-599E-47B0-B06C-5065E5B68A9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4F9FD7CD-9A95-4980-84A6-4491A0589633}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Domain", "Povio.FlowerSpot.Domain\Povio.FlowerSpot.Domain.csproj", "{795AD563-0190-4950-A577-3038AC35860B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Application", "Povio.FlowerSpot.Application\Povio.FlowerSpot.Application.csproj", "{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Contracts", "Povio.FlowerSpot.Contracts\Povio.FlowerSpot.Contracts.csproj", "{61505D3F-39D6-4038-B235-4003729F4298}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{795AD563-0190-4950-A577-3038AC35860B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{795AD563-0190-4950-A577-3038AC35860B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{795AD563-0190-4950-A577-3038AC35860B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{795AD563-0190-4950-A577-3038AC35860B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61505D3F-39D6-4038-B235-4003729F4298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61505D3F-39D6-4038-B235-4003729F4298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61505D3F-39D6-4038-B235-4003729F4298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61505D3F-39D6-4038-B235-4003729F4298}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DCC1946B-F7E1-4130-A7A9-BB198F6C63FD} = {1AF126CC-5561-4D8E-BDFC-087CADCD16A0}
+		{2817DBF2-599E-47B0-B06C-5065E5B68A9A} = {1AF126CC-5561-4D8E-BDFC-087CADCD16A0}
+		{4F9FD7CD-9A95-4980-84A6-4491A0589633} = {1AF126CC-5561-4D8E-BDFC-087CADCD16A0}
+		{795AD563-0190-4950-A577-3038AC35860B} = {2817DBF2-599E-47B0-B06C-5065E5B68A9A}
+		{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46} = {2817DBF2-599E-47B0-B06C-5065E5B68A9A}
+		{61505D3F-39D6-4038-B235-4003729F4298} = {2817DBF2-599E-47B0-B06C-5065E5B68A9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {718C5DBB-2A0B-4EC1-9C1E-FD397E2F6529}
