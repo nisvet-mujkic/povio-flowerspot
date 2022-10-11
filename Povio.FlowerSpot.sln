@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Contracts", "Povio.FlowerSpot.Contracts\Povio.FlowerSpot.Contracts.csproj", "{61505D3F-39D6-4038-B235-4003729F4298}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Persistence", "Povio.FlowerSpot.Persistence\Povio.FlowerSpot.Persistence.csproj", "{FB804073-2B2E-4A00-AEA8-03B55CC0CD4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{61505D3F-39D6-4038-B235-4003729F4298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61505D3F-39D6-4038-B235-4003729F4298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61505D3F-39D6-4038-B235-4003729F4298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB804073-2B2E-4A00-AEA8-03B55CC0CD4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB804073-2B2E-4A00-AEA8-03B55CC0CD4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB804073-2B2E-4A00-AEA8-03B55CC0CD4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB804073-2B2E-4A00-AEA8-03B55CC0CD4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{795AD563-0190-4950-A577-3038AC35860B} = {2817DBF2-599E-47B0-B06C-5065E5B68A9A}
 		{2734B1E2-CE1D-4BE8-9D6A-77DE719A0F46} = {2817DBF2-599E-47B0-B06C-5065E5B68A9A}
 		{61505D3F-39D6-4038-B235-4003729F4298} = {2817DBF2-599E-47B0-B06C-5065E5B68A9A}
+		{FB804073-2B2E-4A00-AEA8-03B55CC0CD4E} = {4F9FD7CD-9A95-4980-84A6-4491A0589633}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {718C5DBB-2A0B-4EC1-9C1E-FD397E2F6529}
