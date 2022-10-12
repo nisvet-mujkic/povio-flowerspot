@@ -11,5 +11,8 @@ namespace Povio.FlowerSpot.Domain.Entities
         public string Password { get; set; }
 
         public string Email { get; set; }
+
+
+        public ICollection<Sighting> Sightings { get; set; }
     }
 }

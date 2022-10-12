@@ -4,11 +4,12 @@ using Povio.FlowerSpot.Domain.Entities;
 
 namespace Povio.FlowerSpot.Persistence.Configurations
 {
-    public class FlowerConfiguration : IEntityTypeConfiguration<Flower>
+    public class LikeConfiguration : IEntityTypeConfiguration<Like>
     {
-        public void Configure(EntityTypeBuilder<Flower> builder)
+        public void Configure(EntityTypeBuilder<Like> builder)
         {
-            //throw new NotImplementedException();
+            builder
+                .HasKey(b => new { b.UserId, b.SightingId });
         }
     }
 }

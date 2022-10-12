@@ -11,8 +11,10 @@ namespace Povio.FlowerSpot.Persistence
 
         public DbSet<Flower> Flowers { get; set; }
 
-        public FlowerSpotDbContext(string connectionString) => 
+        public FlowerSpotDbContext(string connectionString)
+        {
             _connectionString = connectionString ?? throw new ArgumentNullException();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,9 +34,6 @@ namespace Povio.FlowerSpot.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.UtcNow;
-                        break;
-                    case EntityState.Modified:
-                        entry.Entity.LastModifiedDate = DateTime.UtcNow;
                         break;
                 }
             }

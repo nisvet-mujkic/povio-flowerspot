@@ -4,6 +4,13 @@ namespace Povio.FlowerSpot.Domain.Entities
 {
     public class Like : AuditableEntity
     {
-        public int LikeId { get; set; }
+        public int UserId { get; set; }
+
+        public int SightingId { get; set; }
+
+
+        public User User { get; set; }
+
+        public Sighting Sighting { get; set; }
     }
 }
