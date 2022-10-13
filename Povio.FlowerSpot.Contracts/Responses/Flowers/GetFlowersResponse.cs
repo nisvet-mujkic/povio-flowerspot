@@ -8,5 +8,10 @@
     public class FlowerDto
     {
         public string Name { get; set; }
+
+        public string ImageRef { get; set; }
+
+        public string Description { get; set; }
+
     }
 }

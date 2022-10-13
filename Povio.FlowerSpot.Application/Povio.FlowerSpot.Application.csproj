@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Povio.FlowerSpot.Domain\Povio.FlowerSpot.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Flowers\Commands\" />
-  </ItemGroup>
-
 </Project>

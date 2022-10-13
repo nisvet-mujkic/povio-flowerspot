@@ -1,29 +1,38 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Povio.FlowerSpot.Api.Controllers.Common;
+using Povio.FlowerSpot.Application.Features.Flowers.Commands;
 using Povio.FlowerSpot.Application.Features.Flowers.Queries;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class FlowerController : ControllerBase
+    public class FlowerController : ApplicationController
     {
-        private readonly IMediator _mediator;
-
-        public FlowerController(IMediator mediator)
+        public FlowerController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetFlowersResponse>> Get()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetFlowersResponse))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Get()
         {
-            var response = await _mediator.Send(new GetFlowersQuery(), HttpContext.RequestAborted);
+            var response = await Mediator.Send(new GetFlowersQuery(), HttpContext.RequestAborted);
 
             return response.Match<ActionResult>(
                 Ok,
                 _ => NotFound());
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> Post(CreateFlowerCommand command)
+        {
+            await Mediator.Send(command, HttpContext.RequestAborted);
+
+            return Ok();
         }
     }
 }
