@@ -22,7 +22,7 @@ namespace Povio.FlowerSpot.Application.Features.Flowers.Queries
 
         public async Task<OneOf<GetFlowersResponse, None>> Handle(GetFlowersQuery request, CancellationToken cancellationToken)
         {
-            var flowers = await _flowerRepository.GetAllAsync();
+            var flowers = await _flowerRepository.GetAllAsync(cancellationToken);
 
             if (flowers.Count == 0)
                 return new None();

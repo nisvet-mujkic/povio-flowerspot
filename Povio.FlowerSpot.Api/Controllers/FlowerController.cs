@@ -7,7 +7,7 @@ using Povio.FlowerSpot.Contracts.Responses.Flowers;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/flowers")]
     public class FlowerController : ApplicationController
     {
         public FlowerController(IMediator mediator) : base(mediator)

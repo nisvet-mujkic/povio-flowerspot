@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Povio.FlowerSpot.Application\Povio.FlowerSpot.Application.csproj" />
+    <ProjectReference Include="..\Povio.FlowerSpot.Infrastructure\Povio.FlowerSpot.Infrastructure.csproj" />
     <ProjectReference Include="..\Povio.FlowerSpot.Persistence\Povio.FlowerSpot.Persistence.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
+using Povio.FlowerSpot.Application.Contracts.Clients;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
+using Povio.FlowerSpot.Domain.Entities;
 
 namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSighting
 {
@@ -8,16 +11,28 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSightin
 
     public class CreateSightingCommandHandler : IRequestHandler<CreateSightingCommand, CreateSightingResponse>
     {
+        private readonly IMapper _mapper;
         private readonly ISightingRepository _sightingRepository;
+        private readonly IQuoteClient _quoteClient;
 
-        public CreateSightingCommandHandler(ISightingRepository sightingRepository)
+        public CreateSightingCommandHandler(IMapper mapper, ISightingRepository sightingRepository, IQuoteClient quoteClient)
         {
+            _mapper = mapper;
             _sightingRepository = sightingRepository;
+            _quoteClient = quoteClient;
         }
 
-        public Task<CreateSightingResponse> Handle(CreateSightingCommand request, CancellationToken cancellationToken)
+        public async Task<CreateSightingResponse> Handle(CreateSightingCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var sighting = _mapper.Map<Sighting>(request);
+
+            var entity = _sightingRepository.AddAsync(sighting, cancellationToken);
+            var quote = await _quoteClient.GetQuoteOfTheDayAsync();
+
+            return new CreateSightingResponse()
+            {
+                Quote = quote
+            };
         }
     }
 }
