@@ -6,7 +6,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSightin
 {
     public record CreateSightingCommand(decimal Longitude, decimal Latitude, int UserId, int FlowerId, string ImageRef) : IRequest<CreateSightingResponse>;
 
-    public class CreateSightingCommandHandler : RequestHandler<CreateSightingCommand, CreateSightingResponse>
+    public class CreateSightingCommandHandler : IRequestHandler<CreateSightingCommand, CreateSightingResponse>
     {
         private readonly ISightingRepository _sightingRepository;
 
@@ -15,7 +15,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSightin
             _sightingRepository = sightingRepository;
         }
 
-        protected override CreateSightingResponse Handle(CreateSightingCommand request)
+        public Task<CreateSightingResponse> Handle(CreateSightingCommand request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

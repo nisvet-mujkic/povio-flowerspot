@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 using Povio.FlowerSpot.Domain.Entities;
 
@@ -6,25 +7,23 @@ namespace Povio.FlowerSpot.Application.Features.Flowers.Commands
 {
     public record CreateFlowerCommand(string Name, string ImageRef, string Description) : IRequest;
 
-    public class CreateFlowerCommandHandler : AsyncRequestHandler<CreateFlowerCommand>
+    public class CreateFlowerCommandHandler : IRequestHandler<CreateFlowerCommand>
     {
+        private readonly IMapper _mapper;
         private readonly IFlowerRepository _flowerRepository;
 
-        public CreateFlowerCommandHandler(IFlowerRepository flowerRepository)
+        public CreateFlowerCommandHandler(IMapper mapper, IFlowerRepository flowerRepository)
         {
+            _mapper = mapper;
             _flowerRepository = flowerRepository;
         }
 
-        protected override async Task Handle(CreateFlowerCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateFlowerCommand request, CancellationToken cancellationToken)
         {
-            var flower = new Flower()
-            {
-                Name = request.Name,
-                ImageRef = request.ImageRef,
-                Description = request.Description
-            };
+            var flower = _mapper.Map<Flower>(request);
+            await _flowerRepository.AddAsync(flower, cancellationToken);
 
-            await _flowerRepository.AddAsync(flower);
+            return Unit.Value;
         }
     }
 }

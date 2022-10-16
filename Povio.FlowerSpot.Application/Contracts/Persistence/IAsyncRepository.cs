@@ -2,14 +2,14 @@
 {
     public interface IAsyncRepository<T> where T : class
     {
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default);
 
-        Task<IReadOnlyCollection<T>> GetAllAsync();
+        Task<IReadOnlyCollection<T>> GetAllAsync(CancellationToken cancellationToken = default);
 
-        Task<T> AddAsync(T entity);
+        Task<T> AddAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task UpdateAsync(T entity);
+        Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
 
-        Task DeleteAsync(T entity);
+        Task DeleteAsync(T entity, CancellationToken cancellationToken = default);
     }
 }
