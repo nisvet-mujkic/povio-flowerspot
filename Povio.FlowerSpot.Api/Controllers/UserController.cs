@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
+using Povio.FlowerSpot.Application.Features.Users.Commands.RegisterUser;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
@@ -12,9 +13,13 @@ namespace Povio.FlowerSpot.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post()
+        public async Task<IActionResult> Post(RegisterUserCommand command)
         {
-            return Ok();
+            var response = await Mediator.Send(command, HttpContext.RequestAborted);
+
+            return response.Match<IActionResult>(
+                success => CreatedAtAction(nameof(Post), command),
+                _ => BadRequest());
         }
     }
 }
