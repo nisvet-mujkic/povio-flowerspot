@@ -15,6 +15,7 @@ namespace Povio.FlowerSpot.Persistence
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IFlowerRepository, FlowerRepository>();
+            services.AddScoped<ISightingRepository, SightingRepository>();
 
             return services;
         }

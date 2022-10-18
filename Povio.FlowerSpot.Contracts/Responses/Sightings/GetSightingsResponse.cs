@@ -1,6 +1,11 @@
 ﻿namespace Povio.FlowerSpot.Contracts.Responses.Sightings
 {
-    public class CreateSightingResponse
+    public class GetSightingsResponse
+    {
+        public List<SightingDto> Sightings { get; set; }
+    }
+
+    public class SightingDto
     {
         public int SightingId { get; set; }
 
@@ -13,7 +18,5 @@
         public decimal Latitude { get; set; }
 
         public string ImageRef { get; set; }
-
-        //public string Quote { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Povio.FlowerSpot.Application.Features.Flowers.Commands;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSighting;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
+using Povio.FlowerSpot.Contracts.Responses.Sightings;
 using Povio.FlowerSpot.Domain.Entities;
 
 namespace Povio.FlowerSpot.Application.Mappers
@@ -15,9 +16,11 @@ namespace Povio.FlowerSpot.Application.Mappers
                 .ForMember(src => src.FlowerId, opt => opt.Ignore())
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
 
+            CreateMap<Sighting, SightingDto>();
             CreateMap<CreateSightingCommand, Sighting>()
                 .ForMember(src => src.SightingId, opt => opt.Ignore())
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
+            CreateMap<Sighting, CreateSightingResponse>();
         }
     }
 }

@@ -29,10 +29,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSightin
             var entity = _sightingRepository.AddAsync(sighting, cancellationToken);
             var quote = await _quoteClient.GetQuoteOfTheDayAsync();
 
-            return new CreateSightingResponse()
-            {
-                Quote = quote
-            };
+            return _mapper.Map<CreateSightingResponse>(entity);
         }
     }
 }
