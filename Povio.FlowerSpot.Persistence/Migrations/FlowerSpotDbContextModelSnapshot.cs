@@ -47,7 +47,7 @@ namespace Povio.FlowerSpot.Persistence.Migrations
 
                     b.HasKey("FlowerId");
 
-                    b.ToTable("Flowers");
+                    b.ToTable("Flowers", (string)null);
                 });
 
             modelBuilder.Entity("Povio.FlowerSpot.Domain.Entities.Like", b =>
@@ -65,7 +65,7 @@ namespace Povio.FlowerSpot.Persistence.Migrations
 
                     b.HasIndex("SightingId");
 
-                    b.ToTable("Like");
+                    b.ToTable("Like", (string)null);
                 });
 
             modelBuilder.Entity("Povio.FlowerSpot.Domain.Entities.Sighting", b =>
@@ -101,7 +101,7 @@ namespace Povio.FlowerSpot.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Sighting");
+                    b.ToTable("Sighting", (string)null);
                 });
 
             modelBuilder.Entity("Povio.FlowerSpot.Domain.Entities.User", b =>
@@ -129,7 +129,7 @@ namespace Povio.FlowerSpot.Persistence.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Povio.FlowerSpot.Domain.Entities.Like", b =>

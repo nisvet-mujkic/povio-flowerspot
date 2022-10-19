@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
+using Povio.FlowerSpot.Application.Contracts.Services;
+using Povio.FlowerSpot.Application.Services;
 using Povio.FlowerSpot.Persistence.Repositories;
 
 namespace Povio.FlowerSpot.Persistence
@@ -17,6 +19,8 @@ namespace Povio.FlowerSpot.Persistence
             services.AddScoped<IFlowerRepository, FlowerRepository>();
             services.AddScoped<ISightingRepository, SightingRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

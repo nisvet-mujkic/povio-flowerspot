@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
 using Povio.FlowerSpot.Application.Features.Users.Commands.RegisterUser;
@@ -12,6 +13,7 @@ namespace Povio.FlowerSpot.Api.Controllers
         {
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Post(RegisterUserCommand command)
         {
