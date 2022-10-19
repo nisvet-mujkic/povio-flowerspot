@@ -34,7 +34,7 @@ namespace Povio.FlowerSpot.Persistence.Repositories
 
         public virtual async Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            return await _dbContext.Set<T>().FindAsync(id, cancellationToken);
+            return await _dbContext.Set<T>().FindAsync(new object[] { id }, cancellationToken);
         }
 
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)

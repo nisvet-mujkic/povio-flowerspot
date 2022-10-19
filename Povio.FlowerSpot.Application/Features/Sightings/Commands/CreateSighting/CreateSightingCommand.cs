@@ -26,7 +26,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSightin
         {
             var sighting = _mapper.Map<Sighting>(request);
 
-            var entity = _sightingRepository.AddAsync(sighting, cancellationToken);
+            var entity = await _sightingRepository.AddAsync(sighting, cancellationToken);
             var quote = await _quoteClient.GetQuoteOfTheDayAsync();
 
             return _mapper.Map<CreateSightingResponse>(entity);

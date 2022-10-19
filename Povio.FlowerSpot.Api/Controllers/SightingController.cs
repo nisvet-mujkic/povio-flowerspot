@@ -5,6 +5,7 @@ using Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSighting;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.DeleteSighting;
 using Povio.FlowerSpot.Application.Features.Sightings.Queries.GetSightings;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
+using System.Security.Claims;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
@@ -20,11 +21,9 @@ namespace Povio.FlowerSpot.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Get()
         {
-            var response = await Mediator.Send(new GetSightingsQuery(), HttpContext.RequestAborted);
+            var sightings = await Mediator.Send(new GetSightingsQuery(), HttpContext.RequestAborted);
 
-            return response.Match<ActionResult>(
-                Ok,
-                _ => NotFound());
+            return Ok(sightings);
         }
 
         // TODO: Endpoint to get number of likes
@@ -42,7 +41,7 @@ namespace Povio.FlowerSpot.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int sightingId)
         {
-            await Mediator.Send(new DeleteSigthingCommand(sightingId), HttpContext.RequestAborted);
+            await Mediator.Send(new DeleteSigthingCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
 
             return NoContent();
         }

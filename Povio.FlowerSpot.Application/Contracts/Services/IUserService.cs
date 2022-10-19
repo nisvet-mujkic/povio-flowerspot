@@ -1,6 +1,7 @@
 ﻿using OneOf;
 using OneOf.Types;
 using Povio.FlowerSpot.Domain.Entities;
+using System.Security.Claims;
 
 namespace Povio.FlowerSpot.Application.Contracts.Services
 {

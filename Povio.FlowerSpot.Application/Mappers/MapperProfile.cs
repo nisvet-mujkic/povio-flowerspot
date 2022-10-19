@@ -23,6 +23,7 @@ namespace Povio.FlowerSpot.Application.Mappers
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
             CreateMap<Sighting, CreateSightingResponse>();
 
+
             CreateMap<RegisterUserCommand, User>()
                .ForMember(src => src.UserId, opt => opt.Ignore())
                .ForMember(src => src.CreatedDate, opt => opt.Ignore());

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Povio.FlowerSpot.Api.Controllers.Common
 {
@@ -13,6 +14,9 @@ namespace Povio.FlowerSpot.Api.Controllers.Common
             Mediator = mediator;
         }
 
-        public IMediator Mediator { get; }
+        protected IMediator Mediator { get; }
+
+        protected int CurrentUserId => 
+            int.Parse(HttpContext.User.Claims.Single(claim => claim.Type == ClaimTypes.NameIdentifier).Value);
     }
 }

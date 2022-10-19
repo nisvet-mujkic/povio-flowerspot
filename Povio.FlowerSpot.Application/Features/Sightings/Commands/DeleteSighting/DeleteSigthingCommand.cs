@@ -3,7 +3,7 @@ using Povio.FlowerSpot.Application.Contracts.Persistence;
 
 namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.DeleteSighting
 {
-    public record DeleteSigthingCommand(int SightingId) : IRequest;
+    public record DeleteSigthingCommand(int SightingId, int CurrentUserId) : IRequest;
 
     public class DeleteSigthingCommandHandler : IRequestHandler<DeleteSigthingCommand>
     {
@@ -17,12 +17,11 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.DeleteSightin
         public async Task<Unit> Handle(DeleteSigthingCommand request, CancellationToken cancellationToken)
         {
             var sighting = await _sightingRepository.GetByIdAsync(request.SightingId, cancellationToken);
-
-            // check current user id 
-            if (sighting is not null && sighting.UserId != 1)
+            
+            if (sighting is not null && sighting.UserId != request.CurrentUserId)
                 return Unit.Value;
 
-            await _sightingRepository.DeleteAsync(new Domain.Entities.Sighting() { SightingId = request.SightingId }, cancellationToken);
+            await _sightingRepository.DeleteAsync(sighting, cancellationToken);
 
             return Unit.Value;
         }
