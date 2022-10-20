@@ -10,7 +10,12 @@ namespace Povio.FlowerSpot.Persistence
         private readonly string _connectionString;
 
         public DbSet<Flower> Flowers { get; set; }
+
         public DbSet<User> User { get; set; }
+
+        public DbSet<Sighting> Sighting { get; set; }
+
+        public DbSet<Like> Like { get; set; }
 
         public FlowerSpotDbContext(string connectionString)
         {

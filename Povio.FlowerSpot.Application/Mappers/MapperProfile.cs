@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Povio.FlowerSpot.Application.Features.Flowers.Commands;
-using Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSighting;
+using Povio.FlowerSpot.Application.Features.Sightings.Commands.Create;
 using Povio.FlowerSpot.Application.Features.Users.Commands.RegisterUser;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
@@ -18,7 +18,7 @@ namespace Povio.FlowerSpot.Application.Mappers
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
 
             CreateMap<Sighting, SightingDto>();
-            CreateMap<CreateSightingCommand, Sighting>()
+            CreateMap<CreateCommand, Sighting>()
                 .ForMember(src => src.SightingId, opt => opt.Ignore())
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
             CreateMap<Sighting, CreateSightingResponse>();

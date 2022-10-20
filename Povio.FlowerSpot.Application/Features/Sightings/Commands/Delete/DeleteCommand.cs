@@ -1,20 +1,20 @@
 ﻿using MediatR;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 
-namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.DeleteSighting
+namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Delete
 {
-    public record DeleteSigthingCommand(int SightingId, int CurrentUserId) : IRequest;
+    public record DeleteCommand(int SightingId, int CurrentUserId) : IRequest;
 
-    public class DeleteSigthingCommandHandler : IRequestHandler<DeleteSigthingCommand>
+    public class DeleteCommandHandler : IRequestHandler<DeleteCommand>
     {
         private readonly ISightingRepository _sightingRepository;
 
-        public DeleteSigthingCommandHandler(ISightingRepository sightingRepository)
+        public DeleteCommandHandler(ISightingRepository sightingRepository)
         {
             _sightingRepository = sightingRepository;
         }
 
-        public async Task<Unit> Handle(DeleteSigthingCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
         {
             var sighting = await _sightingRepository.GetByIdAsync(request.SightingId, cancellationToken);
             

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
-using Povio.FlowerSpot.Application.Features.Sightings.Commands.CreateSighting;
-using Povio.FlowerSpot.Application.Features.Sightings.Commands.DeleteSighting;
+using Povio.FlowerSpot.Application.Features.Sightings.Commands.Create;
+using Povio.FlowerSpot.Application.Features.Sightings.Commands.Delete;
 using Povio.FlowerSpot.Application.Features.Sightings.Queries.GetSightings;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
 using System.Security.Claims;
@@ -26,11 +26,9 @@ namespace Povio.FlowerSpot.Api.Controllers
             return Ok(sightings);
         }
 
-        // TODO: Endpoint to get number of likes
-
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(GetSightingsResponse))]
-        public async Task<IActionResult> Post(CreateSightingCommand command)
+        public async Task<IActionResult> Post(CreateCommand command)
         {
             var response = await Mediator.Send(command, HttpContext.RequestAborted);
 
@@ -41,7 +39,7 @@ namespace Povio.FlowerSpot.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Delete(int sightingId)
         {
-            await Mediator.Send(new DeleteSigthingCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
+            await Mediator.Send(new DeleteCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
 
             return NoContent();
         }

@@ -19,6 +19,7 @@ namespace Povio.FlowerSpot.Persistence
             services.AddScoped<IFlowerRepository, FlowerRepository>();
             services.AddScoped<ISightingRepository, SightingRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILikeRepository, LikeRepository>();
 
             services.AddScoped<IUserService, UserService>();
 

@@ -1,6 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
+using Povio.FlowerSpot.Application.Features.Sightings.Commands.Dislike;
+using Povio.FlowerSpot.Application.Features.Sightings.Commands.Like;
+using Povio.FlowerSpot.Application.Features.Sightings.Queries.GetNumberOfLikes;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
@@ -11,15 +14,31 @@ namespace Povio.FlowerSpot.Api.Controllers
         {
         }
 
-        [HttpPost]
-        public IActionResult Post(int sightingId)
+        [HttpGet]
+        public async Task<IActionResult> Get(int sightingId)
         {
-            return CreatedAtAction(nameof(Post), new { });
+            var response = await Mediator.Send(new GetNumberOfLikesQuery(sightingId), HttpContext.RequestAborted);
+
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(int sightingId)
+        {
+            await Mediator.Send(new LikeCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
+
+            return CreatedAtAction(nameof(Post), new
+            {
+                sightingId,
+                userId = CurrentUserId
+            });
         }
 
         [HttpDelete]
-        public IActionResult Delete(int sightingId)
+        public async Task<IActionResult> Delete(int sightingId)
         {
+            await Mediator.Send(new DislikeCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
+
             return NoContent();
         }
     }
