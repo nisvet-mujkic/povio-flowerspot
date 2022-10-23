@@ -5,7 +5,7 @@ using OneOf.Types;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 using Povio.FlowerSpot.Domain.Entities;
 
-namespace Povio.FlowerSpot.Application.Features.Users.Commands.RegisterUser
+namespace Povio.FlowerSpot.Application.Features.Users.Commands.Register
 {
     public record RegisterUserCommand(string Username, string Password, string Email) : IRequest<OneOf<Success, None>>;
 

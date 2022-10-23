@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
-using Povio.FlowerSpot.Application.Features.Flowers.Commands;
+using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
 using Povio.FlowerSpot.Application.Features.Flowers.Queries;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 

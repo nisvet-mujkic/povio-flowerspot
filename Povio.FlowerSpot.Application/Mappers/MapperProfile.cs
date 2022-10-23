@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Povio.FlowerSpot.Application.Features.Flowers.Commands;
+using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Create;
-using Povio.FlowerSpot.Application.Features.Users.Commands.RegisterUser;
+using Povio.FlowerSpot.Application.Features.Users.Commands.Register;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
 using Povio.FlowerSpot.Domain.Entities;

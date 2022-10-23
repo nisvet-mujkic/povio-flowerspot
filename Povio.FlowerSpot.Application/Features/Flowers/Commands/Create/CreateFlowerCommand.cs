@@ -3,7 +3,7 @@ using MediatR;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 using Povio.FlowerSpot.Domain.Entities;
 
-namespace Povio.FlowerSpot.Application.Features.Flowers.Commands
+namespace Povio.FlowerSpot.Application.Features.Flowers.Commands.Create
 {
     public record CreateFlowerCommand(string Name, string ImageRef, string Description) : IRequest;
 

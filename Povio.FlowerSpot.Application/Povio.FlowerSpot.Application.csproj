@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.2.2" />
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="OneOf" Version="3.0.223" />
@@ -17,6 +18,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Povio.FlowerSpot.Contracts\Povio.FlowerSpot.Contracts.csproj" />
     <ProjectReference Include="..\Povio.FlowerSpot.Domain\Povio.FlowerSpot.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Users\Validators\" />
   </ItemGroup>
 
 </Project>

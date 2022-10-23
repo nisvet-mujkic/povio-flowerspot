@@ -2,12 +2,12 @@
 using AutoMapper;
 using Moq;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
-using Povio.FlowerSpot.Application.Features.Flowers.Commands;
+using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
 using Povio.FlowerSpot.Application.Mappers;
 using Povio.FlowerSpot.Domain.Entities;
 using Xunit;
 
-namespace Povio.FlowerSpot.Application.UnitTests.FeaturesTests.Flowers.CommandHandlersTests
+namespace Povio.FlowerSpot.Application.UnitTests.Features.Flowers.Commands
 {
     public class CreateFlowerCommandHandlerShould
     {

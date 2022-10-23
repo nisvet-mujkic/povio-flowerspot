@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.OpenApi.Models;
 using Povio.FlowerSpot.Api.Extensions;
@@ -15,7 +17,10 @@ builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation(options =>
+{
+    options.RegisterValidatorsFromAssemblyContaining<IApplicationMarker>();
+});
 
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", config => { });
@@ -24,7 +29,7 @@ builder.Services.AddAuthentication("BasicAuthentication")
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(config =>
 {
-    config.AddSecurityDefinition("basic", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
+    config.AddSecurityDefinition("basic", new OpenApiSecurityScheme()
     {
         Name = "Authorization",
         Type = SecuritySchemeType.Http,

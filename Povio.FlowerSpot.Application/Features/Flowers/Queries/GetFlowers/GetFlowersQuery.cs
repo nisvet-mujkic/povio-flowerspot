@@ -5,7 +5,7 @@ using OneOf.Types;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 
-namespace Povio.FlowerSpot.Application.Features.Flowers.Queries
+namespace Povio.FlowerSpot.Application.Features.Flowers.Queries.GetFlowers
 {
     public record GetFlowersQuery : IRequest<OneOf<GetFlowersResponse, None>>;
 
