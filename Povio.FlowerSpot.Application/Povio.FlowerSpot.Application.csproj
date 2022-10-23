@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Povio.FlowerSpot.Domain\Povio.FlowerSpot.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Users\Validators\" />
-  </ItemGroup>
-
 </Project>

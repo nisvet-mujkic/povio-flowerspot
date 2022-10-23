@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Povio.FlowerSpot.Application\Povio.FlowerSpot.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Users\Validators\Register\" />
+  </ItemGroup>
+
 </Project>
