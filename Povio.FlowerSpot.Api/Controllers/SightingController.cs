@@ -27,7 +27,7 @@ namespace Povio.FlowerSpot.Api.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(GetSightingsResponse))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateSightingResponse))]
         public async Task<IActionResult> Post(CreateCommand command)
         {
             var response = await Mediator.Send(command, HttpContext.RequestAborted);

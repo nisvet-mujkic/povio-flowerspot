@@ -14,6 +14,6 @@
 
         public string ImageRef { get; set; }
 
-        //public string Quote { get; set; }
+        public string Quote { get; set; }
     }
 }

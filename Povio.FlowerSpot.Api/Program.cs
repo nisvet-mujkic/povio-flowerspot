@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.OpenApi.Models;
+using Povio.FlowerSpot.Api.Extensions;
 using Povio.FlowerSpot.Api.Handlers;
 using Povio.FlowerSpot.Application;
 using Povio.FlowerSpot.Infrastructure;
@@ -8,9 +9,11 @@ using Povio.FlowerSpot.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddConfigurations(builder.Configuration);
+
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
-builder.Services.AddInfrastructureServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddControllers();
 

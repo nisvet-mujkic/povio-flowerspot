@@ -13,9 +13,9 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Create
     {
         private readonly IMapper _mapper;
         private readonly ISightingRepository _sightingRepository;
-        private readonly IQuoteClient _quoteClient;
+        private readonly IQuoteServiceClient _quoteClient;
 
-        public CreateCommandHandler(IMapper mapper, ISightingRepository sightingRepository, IQuoteClient quoteClient)
+        public CreateCommandHandler(IMapper mapper, ISightingRepository sightingRepository, IQuoteServiceClient quoteClient)
         {
             _mapper = mapper;
             _sightingRepository = sightingRepository;
@@ -27,9 +27,12 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Create
             var sighting = _mapper.Map<Sighting>(request);
 
             var entity = await _sightingRepository.AddAsync(sighting, cancellationToken);
-            var quote = await _quoteClient.GetQuoteOfTheDayAsync();
+            var mapped = _mapper.Map<CreateSightingResponse>(entity);
 
-            return _mapper.Map<CreateSightingResponse>(entity);
+            var quote = await _quoteClient.GetQuoteOfTheDayAsync();
+            mapped.Quote = quote.Contents.Quotes.FirstOrDefault()?.Quote;
+
+            return mapped;
         }
     }
 }
