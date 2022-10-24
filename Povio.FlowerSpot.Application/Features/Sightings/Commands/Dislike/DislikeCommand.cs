@@ -18,7 +18,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Dislike
         {
             var like = await _likeRepository.FindByCompositeKeyAsync(request.SightingId, request.CurrentUserId, cancellationToken);
 
-            if (like is not null && like.UserId != request.CurrentUserId)
+            if (like is null || like.UserId != request.CurrentUserId)
                 return Unit.Value;
 
             await _likeRepository.DeleteAsync(like, cancellationToken);

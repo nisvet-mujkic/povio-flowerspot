@@ -17,6 +17,7 @@ namespace Povio.FlowerSpot.Application.Mappers
             CreateMap<CreateFlowerCommand, Flower>()
                 .ForMember(src => src.FlowerId, opt => opt.Ignore())
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
+            CreateMap<Flower, CreateFlowerResponse>();
 
             CreateMap<Sighting, SightingDto>();
             CreateMap<CreateCommand, Sighting>()

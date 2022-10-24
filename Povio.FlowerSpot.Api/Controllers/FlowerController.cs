@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
 using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
@@ -7,6 +9,7 @@ using Povio.FlowerSpot.Contracts.Responses.Flowers;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
+    [TranslateResultToActionResult]
     [Route("api/flowers")]
     public class FlowerController : ApplicationController
     {
@@ -16,23 +19,16 @@ namespace Povio.FlowerSpot.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetFlowersResponse))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get()
+        public async Task<Result<GetFlowersResponse>> Get()
         {
-            var response = await Mediator.Send(new GetFlowersQuery(), HttpContext.RequestAborted);
-
-            return response.Match<ActionResult>(
-                Ok,
-                _ => NotFound());
+            return await Mediator.Send(new GetFlowersQuery(), HttpContext.RequestAborted);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Post(CreateFlowerCommand command)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateFlowerResponse))]
+        public async Task<Result<CreateFlowerResponse>> Post(CreateFlowerCommand command)
         {
-            await Mediator.Send(command, HttpContext.RequestAborted);
-
-            return Ok();
+            return await Mediator.Send(command, HttpContext.RequestAborted);
         }
     }
 }

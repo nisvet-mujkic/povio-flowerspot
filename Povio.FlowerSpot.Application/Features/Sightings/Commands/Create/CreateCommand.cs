@@ -30,7 +30,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Create
             var mapped = _mapper.Map<CreateSightingResponse>(entity);
 
             var quote = await _quoteClient.GetQuoteOfTheDayAsync();
-            mapped.Quote = quote.Contents.Quotes.FirstOrDefault()?.Quote;
+            mapped.Quote = quote.Contents.Quotes.First().Quote;
 
             return mapped;
         }
