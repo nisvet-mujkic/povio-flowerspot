@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 using FluentAssertions;
-using Povio.FlowerSpot.Application.Features.Flowers.Commands;
 using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
 using Povio.FlowerSpot.Application.Mappers;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 using Povio.FlowerSpot.Domain.Entities;
 using Xunit;
 
-namespace Povio.FlowerSpot.Application.UnitTests.MapperTests
+namespace Povio.FlowerSpot.Application.UnitTests.Mappers
 {
     public class MapperProfileShould
     {

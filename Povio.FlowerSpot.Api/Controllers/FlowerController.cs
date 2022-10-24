@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
 using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
-using Povio.FlowerSpot.Application.Features.Flowers.Queries;
+using Povio.FlowerSpot.Application.Features.Flowers.Queries.GetFlowers;
 using Povio.FlowerSpot.Contracts.Responses.Flowers;
 
 namespace Povio.FlowerSpot.Api.Controllers

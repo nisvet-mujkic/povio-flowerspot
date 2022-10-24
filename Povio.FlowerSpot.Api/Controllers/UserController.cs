@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
-using Povio.FlowerSpot.Application.Features.Users.Commands.RegisterUser;
+using Povio.FlowerSpot.Application.Features.Users.Commands.Register;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {

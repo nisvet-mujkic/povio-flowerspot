@@ -11,13 +11,10 @@ namespace Povio.FlowerSpot.Domain.Entities
 
         public int FlowerId { get; set; }
 
-        public Longitude Longitude { get; set; }
-
-        public Latitude Latitude { get; set; }
+        public Coordinates Coordinates { get; set; }
 
         public string ImageRef { get; set; }
-
-
+        
         public User User { get; set; }
 
         public Flower Flower { get; set; }
