@@ -1,9 +1,12 @@
-﻿using AutoFixture;
+﻿using Ardalis.Result;
+using AutoFixture;
 using AutoMapper;
+using FluentAssertions;
 using Moq;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 using Povio.FlowerSpot.Application.Features.Flowers.Commands.Create;
 using Povio.FlowerSpot.Application.Mappers;
+using Povio.FlowerSpot.Contracts.Responses.Flowers;
 using Povio.FlowerSpot.Domain.Entities;
 using Xunit;
 
@@ -33,9 +36,12 @@ namespace Povio.FlowerSpot.Application.UnitTests.Features.Flowers.Commands
             var command = new Fixture().Create<CreateFlowerCommand>();
 
             // Act
-            await _sut.Handle(command, CancellationToken.None);
+            var result = await _sut.Handle(command, CancellationToken.None);
 
             // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType<Result<CreateFlowerResponse>>();
+
             _mockFlowerRepository.Verify(
                 x => x.AddAsync(It.Is<Flower>(
                     x => x.Name == command.Name && 

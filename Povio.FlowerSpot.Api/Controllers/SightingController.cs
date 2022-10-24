@@ -1,11 +1,11 @@
-﻿using MediatR;
+﻿using Ardalis.Result;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Create;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Delete;
 using Povio.FlowerSpot.Application.Features.Sightings.Queries.GetSightings;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
-using System.Security.Claims;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
@@ -18,30 +18,17 @@ namespace Povio.FlowerSpot.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetSightingsResponse))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get()
-        {
-            var sightings = await Mediator.Send(new GetSightingsQuery(), HttpContext.RequestAborted);
-
-            return Ok(sightings);
-        }
+        public async Task<Result<GetSightingsResponse>> Get() 
+            => await Mediator.Send(new GetSightingsQuery(), HttpContext.RequestAborted);
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateSightingResponse))]
-        public async Task<IActionResult> Post(CreateCommand command)
-        {
-            var response = await Mediator.Send(command, HttpContext.RequestAborted);
-
-            return CreatedAtAction(nameof(Post), response);
-        }
+        public async Task<Result<CreateSightingResponse>> Post(CreateCommand command)
+            => await Mediator.Send(command, HttpContext.RequestAborted);
 
         [HttpDelete("{sightingId:int:min(1)}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> Delete(int sightingId)
-        {
-            await Mediator.Send(new DeleteCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
-
-            return NoContent();
-        }
+        public async Task<Result> Delete(int sightingId)
+            => await Mediator.Send(new DeleteCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
     }
 }

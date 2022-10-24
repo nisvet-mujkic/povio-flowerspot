@@ -1,9 +1,11 @@
-﻿using MediatR;
+﻿using Ardalis.Result;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Dislike;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Like;
 using Povio.FlowerSpot.Application.Features.Sightings.Queries.GetNumberOfLikes;
+using Povio.FlowerSpot.Contracts.Responses.Sightings;
 
 namespace Povio.FlowerSpot.Api.Controllers
 {
@@ -15,31 +17,18 @@ namespace Povio.FlowerSpot.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(int sightingId)
-        {
-            var response = await Mediator.Send(new GetNumberOfLikesQuery(sightingId), HttpContext.RequestAborted);
-
-            return Ok(response);
-        }
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetNumberOfLikesResponse))]
+        public async Task<Result<GetNumberOfLikesResponse>> Get(int sightingId)
+            => await Mediator.Send(new GetNumberOfLikesQuery(sightingId), HttpContext.RequestAborted);
 
         [HttpPost]
-        public async Task<IActionResult> Post(int sightingId)
-        {
-            await Mediator.Send(new LikeCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
-
-            return CreatedAtAction(nameof(Post), new
-            {
-                sightingId,
-                userId = CurrentUserId
-            });
-        }
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<Result> Post(int sightingId)
+            => await Mediator.Send(new LikeCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int sightingId)
-        {
-            await Mediator.Send(new DislikeCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
-
-            return NoContent();
-        }
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<Result> Delete(int sightingId)
+            => await Mediator.Send(new DislikeCommand(sightingId, CurrentUserId), HttpContext.RequestAborted);
     }
 }

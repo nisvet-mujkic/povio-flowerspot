@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Ardalis.Result;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Povio.FlowerSpot.Api.Controllers.Common;
@@ -15,13 +16,7 @@ namespace Povio.FlowerSpot.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Post(RegisterUserCommand command)
-        {
-            var response = await Mediator.Send(command, HttpContext.RequestAborted);
-
-            return response.Match<IActionResult>(
-                success => CreatedAtAction(nameof(Post), command),
-                _ => BadRequest());
-        }
+        public async Task<Result> Post(RegisterUserCommand command)
+            => await Mediator.Send(command, HttpContext.RequestAborted);
     }
 }

@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using Ardalis.Result;
+using MediatR;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
 
 namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Like
 {
-    public record LikeCommand(int SightingId, int CurrentUserId) : IRequest;
+    public record LikeCommand(int SightingId, int CurrentUserId) : IRequest<Result>;
 
-    public class LikeCommandHandler : IRequestHandler<LikeCommand>
+    public class LikeCommandHandler : IRequestHandler<LikeCommand, Result>
     {
         private readonly ILikeRepository _likeRepository;
 
@@ -14,7 +15,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Like
             _likeRepository = likeRepository;
         }
 
-        public async Task<Unit> Handle(LikeCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(LikeCommand request, CancellationToken cancellationToken)
         {
             await _likeRepository.AddAsync(new Domain.Entities.Like()
             {
@@ -22,7 +23,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Like
                 UserId = request.CurrentUserId
             }, cancellationToken);
 
-            return Unit.Value;
+            return Result.Success();
         }
     }
 }
