@@ -1,4 +1,5 @@
 ﻿using Povio.FlowerSpot.Domain.Common;
+using Povio.FlowerSpot.Domain.ValueObjects;
 
 namespace Povio.FlowerSpot.Domain.Entities
 {
@@ -10,9 +11,9 @@ namespace Povio.FlowerSpot.Domain.Entities
 
         public int FlowerId { get; set; }
 
-        public decimal Longitude { get; set; }
+        public Longitude Longitude { get; set; }
 
-        public decimal Latitude { get; set; }
+        public Latitude Latitude { get; set; }
 
         public string ImageRef { get; set; }
 
