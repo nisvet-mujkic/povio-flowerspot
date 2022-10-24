@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.OpenApi.Models;
 using Povio.FlowerSpot.Api.Extensions;
 using Povio.FlowerSpot.Api.Handlers;
+using Povio.FlowerSpot.Api.Middlewares;
 using Povio.FlowerSpot.Application;
 using Povio.FlowerSpot.Infrastructure;
 using Povio.FlowerSpot.Persistence;
@@ -63,6 +64,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
