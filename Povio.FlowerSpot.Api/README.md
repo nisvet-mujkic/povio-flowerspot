@@ -1,1 +1,0 @@
-# Povio.FlowerSpot v2

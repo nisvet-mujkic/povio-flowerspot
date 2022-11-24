@@ -23,11 +23,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Povio.FlowerSpot.Persistenc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Povio.FlowerSpot.Api", "Povio.FlowerSpot.Api\Povio.FlowerSpot.Api.csproj", "{16D82B38-31A9-4EB5-8FFD-7A6C46448E31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Application.UnitTests", "Povio.FlowerSpot.Application.UnitTests\Povio.FlowerSpot.Application.UnitTests.csproj", "{2870CD8B-7BCC-479C-BBEC-12B592153FB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Povio.FlowerSpot.Application.UnitTests", "Povio.FlowerSpot.Application.UnitTests\Povio.FlowerSpot.Application.UnitTests.csproj", "{2870CD8B-7BCC-479C-BBEC-12B592153FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.Infrastructure", "Povio.FlowerSpot.Infrastructure\Povio.FlowerSpot.Infrastructure.csproj", "{5C21B136-89E7-46FB-BA14-2CE66E89FD25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Povio.FlowerSpot.Infrastructure", "Povio.FlowerSpot.Infrastructure\Povio.FlowerSpot.Infrastructure.csproj", "{5C21B136-89E7-46FB-BA14-2CE66E89FD25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Povio.FlowerSpot.IntegrationTests", "Povio.FlowerSpot.IntegrationTests\Povio.FlowerSpot.IntegrationTests.csproj", "{E3C1D4B2-3005-47C0-AFBE-178A2B6A71E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Povio.FlowerSpot.IntegrationTests", "Povio.FlowerSpot.IntegrationTests\Povio.FlowerSpot.IntegrationTests.csproj", "{E3C1D4B2-3005-47C0-AFBE-178A2B6A71E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E0342350-D85A-4821-9BD2-4943ADA9EF7E}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
