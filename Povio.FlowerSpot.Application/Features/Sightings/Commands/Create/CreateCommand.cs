@@ -27,12 +27,11 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Create
         public async Task<Result<CreateSightingResponse>> Handle(CreateCommand request, CancellationToken cancellationToken)
         {
             var sighting = _mapper.Map<Sighting>(request);
+            var quoteResponse = await _quoteClient.GetQuoteOfTheDayAsync();
+            sighting.Quote = quoteResponse.GetQuoteOfTheDay();
 
             var entity = await _sightingRepository.AddAsync(sighting, cancellationToken);
             var mapped = _mapper.Map<CreateSightingResponse>(entity);
-
-            var quoteResponse = await _quoteClient.GetQuoteOfTheDayAsync();
-            mapped.Quote = quoteResponse.GetQuoteOfTheDay();
 
             return mapped;
         }

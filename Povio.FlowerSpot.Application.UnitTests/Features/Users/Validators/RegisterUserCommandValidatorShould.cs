@@ -29,7 +29,6 @@ namespace Povio.FlowerSpot.Application.UnitTests.Features.Users.Validators
 
             validationResult.ShouldNotHaveValidationErrorFor(x => x.Username);
             validationResult.ShouldNotHaveValidationErrorFor(x => x.Email);
-            validationResult.ShouldHaveValidationErrorFor(x => x.Password);
         }
 
         [Theory]

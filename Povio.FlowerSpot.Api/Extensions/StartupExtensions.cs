@@ -1,12 +1,14 @@
 ﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Povio.FlowerSpot.Api.Handlers;
 using Povio.FlowerSpot.Api.Middlewares;
 using Povio.FlowerSpot.Application;
 using Povio.FlowerSpot.Infrastructure;
 using Povio.FlowerSpot.Persistence;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Povio.FlowerSpot.Api.Extensions
 {
@@ -33,19 +35,26 @@ namespace Povio.FlowerSpot.Api.Extensions
             builder.Services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", config => { });
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(config =>
+            builder.Services.AddSwaggerGen(SetupSwagger);
+
+            builder.Services.AddHealthChecks()
+                .AddNpgSql(builder.Configuration.GetConnectionString("FlowerSpotConnectionString"));
+
+            return builder.Build();
+        }
+
+        private static void SetupSwagger(SwaggerGenOptions config)
+        {
+            config.AddSecurityDefinition("basic", new OpenApiSecurityScheme()
             {
-                config.AddSecurityDefinition("basic", new OpenApiSecurityScheme()
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "basic",
-                    In = ParameterLocation.Header,
-                    Description = "Basic Authorization"
-                });
-                config.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                Scheme = "basic",
+                In = ParameterLocation.Header,
+                Description = "Basic Authorization"
+            });
+            config.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
                     {
                         new OpenApiSecurityScheme()
@@ -59,13 +68,12 @@ namespace Povio.FlowerSpot.Api.Extensions
                         Array.Empty<string>()
                     }
                 });
-            });
-
-            return builder.Build();
         }
 
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
+            app.UseHealthChecks("/healthz");
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

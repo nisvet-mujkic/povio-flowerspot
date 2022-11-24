@@ -23,11 +23,16 @@ namespace Povio.FlowerSpot.Application.Mappers
             CreateMap<Flower, CreateFlowerResponse>();
 
             // Sighting
-            CreateMap<Sighting, SightingDto>();
+            CreateMap<Sighting, SightingDto>()
+                .ForMember(dest => dest.Latitude,opt => opt.MapFrom(src => src.Coordinates.Latitude))
+                .ForMember(dest => dest.Longitude,opt => opt.MapFrom(src => src.Coordinates.Longitude));
 
             CreateMap<CreateCommand, Sighting>()
                 .ForMember(dest => dest.SightingId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.User, opt => opt.Ignore())
+                .ForMember(dest => dest.Flower, opt => opt.Ignore())
+                .ForMember(dest => dest.Likes, opt => opt.Ignore())
                 .ForMember(dest => dest.Coordinates, opt => opt.MapFrom(src => Coordinates.Create(src.Longitude, src.Latitude)));
 
             CreateMap<Sighting, CreateSightingResponse>()
@@ -37,6 +42,7 @@ namespace Povio.FlowerSpot.Application.Mappers
             // User
             CreateMap<RegisterUserCommand, User>()
                .ForMember(src => src.UserId, opt => opt.Ignore())
+               .ForMember(src => src.Sightings, opt => opt.Ignore())
                .ForMember(src => src.CreatedDate, opt => opt.Ignore());
         }
     }

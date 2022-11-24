@@ -14,7 +14,9 @@ namespace Povio.FlowerSpot.Domain.Entities
         public Coordinates Coordinates { get; set; }
 
         public string ImageRef { get; set; }
-        
+
+        public string Quote { get; set; }
+
         public User User { get; set; }
 
         public Flower Flower { get; set; }

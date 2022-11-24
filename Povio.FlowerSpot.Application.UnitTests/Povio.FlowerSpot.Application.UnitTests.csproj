@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Users\Validators\Register\**" />
+    <EmbeddedResource Remove="Features\Users\Validators\Register\**" />
+    <None Remove="Features\Users\Validators\Register\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoFixture" Version="4.17.0" />
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
@@ -28,10 +34,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Povio.FlowerSpot.Application\Povio.FlowerSpot.Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Users\Validators\Register\" />
   </ItemGroup>
 
 </Project>
