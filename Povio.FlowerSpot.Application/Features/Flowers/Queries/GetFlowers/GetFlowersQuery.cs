@@ -22,7 +22,6 @@ namespace Povio.FlowerSpot.Application.Features.Flowers.Queries.GetFlowers
         public async Task<Result<GetFlowersResponse>> Handle(GetFlowersQuery request, CancellationToken cancellationToken)
         {
             var flowers = await _flowerRepository.GetAllAsync(cancellationToken);
-
             var mapped = _mapper.Map<List<FlowerDto>>(flowers);
 
             return new GetFlowersResponse()

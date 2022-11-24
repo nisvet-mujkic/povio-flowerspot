@@ -27,15 +27,15 @@ namespace Povio.FlowerSpot.Api.Middlewares
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
+        private static async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             var text = JsonSerializer.Serialize(new
             {
-                StatusCode = httpContext.Response.StatusCode,
-                Message = exception.Message
+                httpContext.Response.StatusCode,
+                exception.Message
             });
 
             await httpContext.Response.WriteAsync(text);

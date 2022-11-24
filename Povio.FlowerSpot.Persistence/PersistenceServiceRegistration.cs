@@ -13,7 +13,7 @@ namespace Povio.FlowerSpot.Persistence
         {
             var connectionString = configuration.GetConnectionString("FlowerSpotConnectionString");
             services.AddScoped(_ => new FlowerSpotDbContext(connectionString));
-
+            
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IFlowerRepository, FlowerRepository>();

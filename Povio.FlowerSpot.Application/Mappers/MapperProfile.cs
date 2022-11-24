@@ -13,21 +13,28 @@ namespace Povio.FlowerSpot.Application.Mappers
     {
         public MapperProfile()
         {
+            // Flower
             CreateMap<Flower, FlowerDto>();
+
             CreateMap<CreateFlowerCommand, Flower>()
                 .ForMember(src => src.FlowerId, opt => opt.Ignore())
                 .ForMember(src => src.CreatedDate, opt => opt.Ignore());
+
             CreateMap<Flower, CreateFlowerResponse>();
 
+            // Sighting
             CreateMap<Sighting, SightingDto>();
+
             CreateMap<CreateCommand, Sighting>()
                 .ForMember(dest => dest.SightingId, opt => opt.Ignore())
                 .ForMember(dest => dest.CreatedDate, opt => opt.Ignore())
                 .ForMember(dest => dest.Coordinates, opt => opt.MapFrom(src => Coordinates.Create(src.Longitude, src.Latitude)));
+
             CreateMap<Sighting, CreateSightingResponse>()
                 .ForMember(dest => dest.Longitude, opt => opt.MapFrom(src => src.Coordinates.Longitude))
                 .ForMember(dest => dest.Latitude, opt => opt.MapFrom(src => src.Coordinates.Latitude));
 
+            // User
             CreateMap<RegisterUserCommand, User>()
                .ForMember(src => src.UserId, opt => opt.Ignore())
                .ForMember(src => src.CreatedDate, opt => opt.Ignore());
