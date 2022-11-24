@@ -8,8 +8,17 @@ namespace Povio.FlowerSpot.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            //builder
-            //    .HasKey(b => b.UserId);
+            builder.HasData(new List<User>
+            {
+                new User()
+                {
+                    UserId = 1,
+                    CreatedDate = DateTime.UtcNow,
+                    Email = "test@test.com",
+                    Username = "test",
+                    Password = "test"
+                }
+            });
         }
     }
 }

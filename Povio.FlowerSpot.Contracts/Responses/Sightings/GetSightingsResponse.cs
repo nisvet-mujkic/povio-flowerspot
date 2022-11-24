@@ -2,7 +2,7 @@
 {
     public class GetSightingsResponse
     {
-        public List<SightingDto> Sightings { get; set; }
+        public List<SightingDto> Sightings { get; set; } = new();
     }
 
     public class SightingDto
@@ -17,6 +17,6 @@
 
         public decimal Latitude { get; set; }
 
-        public string ImageRef { get; set; }
+        public string ImageRef { get; set; } = string.Empty;
     }
 }

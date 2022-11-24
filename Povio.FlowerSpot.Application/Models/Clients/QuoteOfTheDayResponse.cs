@@ -16,4 +16,14 @@
 
         public string Author { get; set; } = string.Empty;
     }
+
+    public static class QuoteOfTheDayResponseExtensions
+    {
+        public static string GetQuoteOfTheDay(this QuoteOfTheDayResponse response)
+        {
+            var quotes = response.Contents.Quotes;
+
+            return quotes.Any() ? quotes.First().Quote : string.Empty;
+        }
+    }
 }

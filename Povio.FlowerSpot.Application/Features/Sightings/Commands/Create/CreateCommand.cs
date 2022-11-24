@@ -3,6 +3,7 @@ using AutoMapper;
 using MediatR;
 using Povio.FlowerSpot.Application.Contracts.Clients;
 using Povio.FlowerSpot.Application.Contracts.Persistence;
+using Povio.FlowerSpot.Application.Models.Clients;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
 using Povio.FlowerSpot.Domain.Entities;
 
@@ -30,8 +31,8 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Create
             var entity = await _sightingRepository.AddAsync(sighting, cancellationToken);
             var mapped = _mapper.Map<CreateSightingResponse>(entity);
 
-            var quote = await _quoteClient.GetQuoteOfTheDayAsync();
-            mapped.Quote = quote.Contents.Quotes.First().Quote;
+            var quoteResponse = await _quoteClient.GetQuoteOfTheDayAsync();
+            mapped.Quote = quoteResponse.GetQuoteOfTheDay();
 
             return mapped;
         }

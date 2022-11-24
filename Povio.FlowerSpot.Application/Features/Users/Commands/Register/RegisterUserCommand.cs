@@ -19,12 +19,21 @@ namespace Povio.FlowerSpot.Application.Features.Users.Commands.Register
             _userRepository = userRepository;
         }
 
-        public async Task<Result> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(RegisterUserCommand command, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<User>(request);
-            await _userRepository.AddAsync(user, cancellationToken);
+            try
+            {
+                var user = _mapper.Map<User>(command);
+                await _userRepository.AddAsync(user, cancellationToken);
 
-            return Result.Success();
+                return Result.Success();
+
+            }
+            catch (Exception ex)
+            {
+                return Result.Error(ex.Message);
+                throw;
+            }
         }
     }
 }

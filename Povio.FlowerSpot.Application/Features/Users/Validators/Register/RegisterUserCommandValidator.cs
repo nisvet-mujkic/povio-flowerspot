@@ -10,12 +10,14 @@ namespace Povio.FlowerSpot.Application.Features.Users.Validators.Register
             RuleFor(x => x.Username)
                 .NotEmpty()
                 .Length(6, 20)
-                .Must(x => !x.Contains(':'));
+                .Must(x => !x.Contains(':'))
+                .WithMessage("Username can't contain ':' characters.");
 
             RuleFor(x => x.Password)
                 .NotEmpty()
                 .Length(6, 100)
-                .Must((command, password) => !password.Contains(':') && password != command.Username);
+                .Must(password => !password.Contains(':'))
+                .WithMessage("Password can't contain ':' characters.");
 
             RuleFor(x => x.Email)
                 .NotEmpty()

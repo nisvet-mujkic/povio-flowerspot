@@ -20,7 +20,7 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Delete
             var sighting = await _sightingRepository.GetByIdAsync(request.SightingId, cancellationToken);
             
             if (sighting is null || sighting.UserId != request.CurrentUserId)
-                return Result.Error("Sighting not found");
+                return Result.Error("Sighting can't be deleted");
 
             await _sightingRepository.DeleteAsync(sighting, cancellationToken);
 
