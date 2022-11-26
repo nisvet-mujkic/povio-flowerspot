@@ -33,6 +33,7 @@ namespace Povio.FlowerSpot.Application.Mappers
                 .ForMember(dest => dest.User, opt => opt.Ignore())
                 .ForMember(dest => dest.Flower, opt => opt.Ignore())
                 .ForMember(dest => dest.Likes, opt => opt.Ignore())
+                .ForMember(dest => dest.Quote, opt => opt.Ignore())
                 .ForMember(dest => dest.Coordinates, opt => opt.MapFrom(src => Coordinates.Create(src.Longitude, src.Latitude)));
 
             CreateMap<Sighting, CreateSightingResponse>()

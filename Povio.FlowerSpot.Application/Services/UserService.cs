@@ -15,7 +15,7 @@ namespace Povio.FlowerSpot.Application.Services
             _userRepository = userRepository;
         }
 
-        public async Task<OneOf<User, None>> Authenticate(string username, string password)
+        public async Task<OneOf<User, None>> AuthenticateAsync(string username, string password)
         {
             var user = await _userRepository.GetUserAsync(username, password);
 

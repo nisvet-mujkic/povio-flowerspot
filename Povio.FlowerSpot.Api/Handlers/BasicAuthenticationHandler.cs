@@ -35,7 +35,7 @@ namespace Povio.FlowerSpot.Api.Handlers
             try
             {
                 var (username, password) = GetCredentials();
-                var authenticationResult = await _userService.Authenticate(username, password);
+                var authenticationResult = await _userService.AuthenticateAsync(username, password);
 
                 if (!authenticationResult.TryPickT0(out user, out var _))
                     return AuthenticateResult.Fail("Invalid Username or Password");

@@ -23,9 +23,18 @@ namespace Povio.FlowerSpot.Application.Features.Flowers.Commands.Create
         public async Task<Result<CreateFlowerResponse>> Handle(CreateFlowerCommand request, CancellationToken cancellationToken)
         {
             var flower = _mapper.Map<Flower>(request);
-            var entity = await _flowerRepository.AddAsync(flower, cancellationToken);
-            
-            return _mapper.Map<CreateFlowerResponse>(entity);
+            try
+            {
+                var entity = await _flowerRepository.AddAsync(flower, cancellationToken);
+                return _mapper.Map<CreateFlowerResponse>(entity);
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            return _mapper.Map<CreateFlowerResponse>(null);
         }
     }
 }
