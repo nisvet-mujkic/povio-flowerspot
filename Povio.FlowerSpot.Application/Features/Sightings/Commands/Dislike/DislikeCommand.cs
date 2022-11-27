@@ -17,10 +17,13 @@ namespace Povio.FlowerSpot.Application.Features.Sightings.Commands.Dislike
 
         public async Task<Result> Handle(DislikeCommand request, CancellationToken cancellationToken)
         {
-            var like = await _likeRepository.FindByCompositeKeyAsync(request.SightingId, request.CurrentUserId, cancellationToken);
+            var like = await _likeRepository.GetByCompositeKeyAsync(request.SightingId, request.CurrentUserId, cancellationToken);
 
-            if (like is null || like.UserId != request.CurrentUserId)
-                return Result.Error();
+            if (like is null)
+                return Result.Error("Entity doesn't exist");
+
+            if (like.UserId != request.CurrentUserId)
+                return Result.Error("User can only remove likes he made");
 
             await _likeRepository.DeleteAsync(like, cancellationToken);
 

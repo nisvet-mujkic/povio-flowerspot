@@ -5,6 +5,7 @@ using Povio.FlowerSpot.Api.Controllers.Common;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Create;
 using Povio.FlowerSpot.Application.Features.Sightings.Commands.Delete;
 using Povio.FlowerSpot.Application.Features.Sightings.Queries.GetSightings;
+using Povio.FlowerSpot.Contracts.Requests.Sightings;
 using Povio.FlowerSpot.Contracts.Responses.Sightings;
 
 namespace Povio.FlowerSpot.Api.Controllers
@@ -23,8 +24,10 @@ namespace Povio.FlowerSpot.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(CreateSightingResponse))]
-        public async Task<Result<CreateSightingResponse>> Post(CreateCommand command)
-            => await Mediator.Send(command, HttpContext.RequestAborted);
+        public async Task<Result<CreateSightingResponse>> Post(CreateSightingRequest request)
+            => await Mediator.Send(
+                new CreateCommand(request.Longitude, request.Latitude, CurrentUserId, request.FlowerId, request.ImageRef), 
+                    HttpContext.RequestAborted);
 
         [HttpDelete("{sightingId:int:min(1)}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

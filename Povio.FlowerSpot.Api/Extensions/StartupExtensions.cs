@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Povio.FlowerSpot.Api.Handlers;
 using Povio.FlowerSpot.Api.Middlewares;
@@ -9,6 +10,7 @@ using Povio.FlowerSpot.Application;
 using Povio.FlowerSpot.Infrastructure;
 using Povio.FlowerSpot.Persistence;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 namespace Povio.FlowerSpot.Api.Extensions
 {

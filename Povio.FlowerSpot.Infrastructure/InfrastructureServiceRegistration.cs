@@ -17,7 +17,7 @@ namespace Povio.FlowerSpot.Infrastructure
             services.AddHttpClient<IQuoteServiceClient, QuoteServiceClient>(config =>
             {
                 config.BaseAddress = new Uri(options.BaseUrl);
-            }).AddTransientHttpErrorPolicy(p => p.RetryAsync(5));
+            }).AddTransientHttpErrorPolicy(p => p.RetryAsync(retryCount: 2));
 
             return services;
         }

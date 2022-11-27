@@ -28,6 +28,11 @@ namespace Povio.FlowerSpot.IntegrationTests.Controllers
             var content = new StringContent(JsonSerializer.Serialize(command), Encoding.UTF8, "application/json");
             var response = await client.PostAndDeserializeAsync<CreateSightingResponse>("api/sightings", content);
 
+            response.Longitude.Should().Be(command.Longitude);
+            response.Latitude.Should().Be(command.Latitude);
+            response.FlowerId.Should().Be(command.FlowerId);
+            response.ImageRef.Should().Be(command.ImageRef);
+            response.UserId.Should().Be(command.UserId);
             response.Quote.Should().Be("quote from the author");
         }
 

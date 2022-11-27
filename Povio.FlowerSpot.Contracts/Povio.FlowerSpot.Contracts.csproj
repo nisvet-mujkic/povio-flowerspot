@@ -8,11 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="Enums\**" />
-    <Compile Remove="Requests\**" />
     <EmbeddedResource Remove="Enums\**" />
-    <EmbeddedResource Remove="Requests\**" />
     <None Remove="Enums\**" />
-    <None Remove="Requests\**" />
   </ItemGroup>
 
 </Project>

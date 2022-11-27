@@ -13,9 +13,9 @@ namespace Povio.FlowerSpot.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<Like> FindByCompositeKeyAsync(int sigtingId, int userId, CancellationToken cancellationToken)
+        public async Task<Like> GetByCompositeKeyAsync(int sigtingId, int userId, CancellationToken cancellationToken)
         {
-            return await _dbContext.Like.FindAsync(new object[] { sigtingId, userId }, cancellationToken);
+            return await _dbContext.Like.FirstOrDefaultAsync(x => x.SightingId == sigtingId && x.UserId == userId, cancellationToken);
         }
 
         public async Task<int> GetNumberOfLikesAsync(int sightingId, CancellationToken cancellationToken)
