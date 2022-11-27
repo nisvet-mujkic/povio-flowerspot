@@ -30,5 +30,15 @@ namespace Povio.FlowerSpot.IntegrationTests.Controllers
 
             response.Quote.Should().Be("quote from the author");
         }
+
+        [Fact]
+        public async Task OnlyUserThatCreatedTheSightingCanDeleteIt()
+        {
+            var client = _factory.CreateClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "dGVzdDp0ZXN0");
+
+            var response = await client.DeleteAsync("api/sightings/1");
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

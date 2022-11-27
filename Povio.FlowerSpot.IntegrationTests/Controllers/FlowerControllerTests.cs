@@ -36,7 +36,7 @@ namespace Povio.FlowerSpot.IntegrationTests.Controllers
 
             var response = await client.GetAndDeserializeAsync<GetFlowersResponse>("api/flowers");
 
-            response.Flowers.Should().NotBeEmpty().And.HaveCount(3);
+            response.Flowers.Should().NotBeEmpty();
         }
 
         [Fact]

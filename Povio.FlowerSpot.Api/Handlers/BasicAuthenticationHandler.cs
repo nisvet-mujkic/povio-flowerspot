@@ -13,6 +13,7 @@ namespace Povio.FlowerSpot.Api.Handlers
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly IUserService _userService;
+        private const string AUTHORIZATION = "Authorization";
 
         public BasicAuthenticationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, IUserService userService) : base(options, logger, encoder, clock)
@@ -27,7 +28,7 @@ namespace Povio.FlowerSpot.Api.Handlers
             if (endpoint?.Metadata.GetMetadata<IAllowAnonymous>() is not null)
                 return AuthenticateResult.NoResult();
 
-            if (!Request.Headers.ContainsKey("Authorization"))
+            if (!Request.Headers.ContainsKey(AUTHORIZATION))
                 return AuthenticateResult.Fail("Missing Authorization header");
 
             User user;
@@ -52,8 +53,8 @@ namespace Povio.FlowerSpot.Api.Handlers
 
         private (string username, string password) GetCredentials()
         {
-            var authorizationHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
-            var credentialsBytes = Convert.FromBase64String(authorizationHeader.Parameter);
+            var authorizationHeader = AuthenticationHeaderValue.Parse(Request.Headers[AUTHORIZATION]);
+            var credentialsBytes = Convert.FromBase64String(authorizationHeader.Parameter!);
             var credentials = Encoding.UTF8.GetString(credentialsBytes).Split(new[] { ':' }, 2);
 
             return (credentials[0], credentials[1]);
