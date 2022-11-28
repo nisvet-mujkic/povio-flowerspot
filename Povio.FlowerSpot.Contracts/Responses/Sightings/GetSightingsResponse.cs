@@ -18,5 +18,7 @@
         public decimal Latitude { get; set; }
 
         public string ImageRef { get; set; } = string.Empty;
+
+        public string Quote { get; set; } = string.Empty;
     }
 }
